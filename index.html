@@ -1,13 +1,121 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>e-invite</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Madhan & Mahalakshmi</title>
+    <meta name="description" content="You are cordially invited to the wedding of Madhan and Mahalakshmi. Join us in celebrating our special day.">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-fixed"></div>
+    <div class="overlay"></div>
+
+    <!-- Envelope Preloader -->
+    <div class="envelope-container" id="envelope-wrapper">
+        <div class="envelope" id="main-envelope">
+            <div class="letter">
+                <h3 class="script-font">You're Invited</h3>
+                <p>To the wedding of</p>
+                <h2 class="accent-font">Madhan & Mahalakshmi</h2>
+                <p style="font-size: 0.8rem; margin-top: 10px;">Click to Open</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="section" id="hero">
+            <div class="glass-card">
+                <img src="/assets/couple.png" alt="Madhan & Mahalakshmi" class="couple-img">
+                <p class="script-font">Save the Date</p>
+                <h1 class="gold-gradient-text" style="font-size: 3.5rem; margin: 10px 0;">Madhan & Mahalakshmi</h1>
+                <p style="font-size: 1.2rem; letter-spacing: 2px;">WE ARE GETTING MARRIED</p>
+                
+                <div class="countdown" id="timer">
+                    <div class="countdown-item">
+                        <span class="countdown-val" id="days">00</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-val" id="hours">00</span>
+                        <span class="countdown-label">Hrs</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-val" id="minutes">00</span>
+                        <span class="countdown-label">Min</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-val" id="seconds">00</span>
+                        <span class="countdown-label">Sec</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Details -->
+        <section class="section" id="details">
+            <div class="glass-card">
+                <h2 class="script-font">The Ceremony</h2>
+                <p style="margin-bottom: 20px;">Join us as we embark on our new journey together.</p>
+                
+                <div style="margin: 30px 0;">
+                    <h3 class="gold-gradient-text" style="font-size: 1.8rem;">WHEN</h3>
+                    <p>May 25, 2026 | 10:00 AM</p>
+                </div>
+
+                <div style="margin: 30px 0;">
+                    <h3 class="gold-gradient-text" style="font-size: 1.8rem;">WHERE</h3>
+                    <p>Grand Palace Mahal, Chennai</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">No. 123, Wedding Street, City Center</p>
+                </div>
+
+                <a href="https://maps.google.com" target="_blank" class="btn">View on Maps</a>
+            </div>
+        </section>
+
+        <!-- RSVP Section -->
+        <section class="section" id="rsvp">
+            <div class="glass-card">
+                <h2 class="script-font">RSVP</h2>
+                <p>We would love to have you with us!</p>
+                
+                <form id="rsvp-form" style="margin-top: 30px; width: 100%; max-width: 500px;">
+                    <div style="margin-bottom: 20px; text-align: left;">
+                        <label style="display: block; margin-bottom: 5px;">Your Name</label>
+                        <input type="text" placeholder="Enter your name" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.1); color: white;">
+                    </div>
+                    <div style="margin-bottom: 20px; text-align: left;">
+                        <label style="display: block; margin-bottom: 5px;">Number of Guests</label>
+                        <select style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.1); color: white;">
+                            <option value="1">1 Person</option>
+                            <option value="2">2 Persons</option>
+                            <option value="3">3 Persons</option>
+                            <option value="4+">4+ Persons</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Confirm Attendance</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="margin-top: 100px; padding-bottom: 50px; color: var(--text-muted);">
+            <p>Made with ❤️ for Madhan & Mahalakshmi</p>
+        </footer>
+    </main>
+
+    <!-- Music Toggle -->
+    <div class="music-toggle" id="music-toggle">
+        <i class="fas fa-music"></i>
+    </div>
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script type="module" src="./main.js"></script>
+</body>
 </html>
