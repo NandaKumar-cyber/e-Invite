@@ -698,32 +698,7 @@ h3,
   }
 }
 
-/* Animated Border Trace */
-.glass-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  padding: 1px;
-  border-radius: 32px;
-  background: var(--border-glow);
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: rotateBorder 6s linear infinite;
-  opacity: 0.5;
-}
-
-@keyframes rotateBorder {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
+/* Gold Shimmer Text */
 .gold-gradient-text {
   background: var(--gold-shimmer);
   background-size: 200% auto;
