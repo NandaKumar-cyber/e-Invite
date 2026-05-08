@@ -94,6 +94,21 @@ h3,
   pointer-events: none;
 }
 
+.bg-ganesh {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(0);
+  width: 250px;
+  height: 250px;
+  background: url('./assets/ganesha.png') center/contain no-repeat;
+  z-index: -4;
+  opacity: 0.6;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  filter: sepia(0.2) brightness(0.9);
+}
+
 .overlay {
   position: fixed;
   top: 0;

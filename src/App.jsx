@@ -119,6 +119,7 @@ function App() {
   return (
     <div className="app-container">
       <div className="bg-fixed"></div>
+      <div className="bg-ganesh"></div>
       <div className="bg-couple"></div>
       <div className="overlay"></div>
 
