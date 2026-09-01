@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
-import coupleImg from "./assets/coupleHD1.png";
-import music from "./assets/minnale.mp3";
+import coupleImg from "./assets/coupleHD4.png";
+import music from "./assets/audio.mp3";
 
 function App() {
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
@@ -15,6 +15,7 @@ function App() {
   });
   const musicRef = useRef(null);
   const sectionRefs = useRef([]);
+  const wasPlayingBeforeHidden = useRef(false);
 
   // Intersection Observer for reveal animations
   useEffect(() => {
@@ -38,7 +39,7 @@ function App() {
 
   // Countdown Timer
   useEffect(() => {
-    const weddingDate = new Date("May 29, 2026 06:00:00").getTime();
+    const weddingDate = new Date("September 17, 2026 07:30:00").getTime();
 
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -87,11 +88,57 @@ function App() {
   const toggleMusic = () => {
     if (isPlaying) {
       musicRef.current.pause();
-    } else {
-      musicRef.current.play();
+      setIsPlaying(false);
+      return;
     }
-    setIsPlaying(!isPlaying);
+
+    if (document.visibilityState === "visible") {
+      musicRef.current.play();
+      setIsPlaying(true);
+    }
   };
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      const audio = musicRef.current;
+      if (!audio) return;
+
+      if (document.hidden) {
+        wasPlayingBeforeHidden.current = !audio.paused;
+        audio.pause();
+        setIsPlaying(false);
+        return;
+      }
+
+      if (wasPlayingBeforeHidden.current) {
+        const playPromise = audio.play();
+        if (playPromise) {
+          playPromise.catch(() => {});
+        }
+        setIsPlaying(true);
+      }
+    };
+
+    const handleWindowFocus = () => {
+      if (wasPlayingBeforeHidden.current && document.visibilityState === "visible") {
+        const playPromise = musicRef.current?.play();
+        if (playPromise) {
+          playPromise.catch(() => {});
+        }
+        setIsPlaying(true);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("blur", handleVisibilityChange);
+    window.addEventListener("focus", handleWindowFocus);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("blur", handleVisibilityChange);
+      window.removeEventListener("focus", handleWindowFocus);
+    };
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -153,7 +200,13 @@ function App() {
           <div className="flap flap-top"></div>
 
           <div className="wax-seal">
-            <span className="seal-text">S & V</span>
+            {/* <span className="seal-text">Naveen & Laila</span>
+             */}
+            <span>Naveen</span>
+
+            <span className="amp">&</span>
+            <span>Laila</span>
+
           </div>
           <div className="letter">
             <p
@@ -196,9 +249,11 @@ function App() {
           <div className="glass-card">
             <p className="script-font">Save the Date</p>
             <h1 className="couple-name gold-gradient-text">
-              <span>Vaishnavi Devi</span>
+              <span>Naveen</span>
+
               <span className="amp">&</span>
-              <span>Senthil Raj</span>
+              <span>Laila</span>
+
             </h1>
 
             <div className="hero-bottom-grid">
@@ -237,7 +292,7 @@ function App() {
                 margin: "30px 0",
               }}
             >
-              <div>
+              {/* <div>
                 <h3
                   className="gold-gradient-text"
                   style={{ fontSize: "1.8rem" }}
@@ -246,7 +301,7 @@ function App() {
                 </h3>
                 <p>May 28, 2026 | Thursday</p>
                 <p>07:00 PM - 09:00 PM</p>
-              </div>
+              </div> */}
               <div>
                 <h3
                   className="gold-gradient-text"
@@ -254,8 +309,8 @@ function App() {
                 >
                   MUHURTHAM
                 </h3>
-                <p>May 29, 2026 | Friday</p>
-                <p>06:00 AM - 07:30 AM</p>
+                <p>September 17, 2026 | Friday</p>
+                <p>07:30 AM - 09:00 AM</p>
               </div>
             </div>
 
@@ -263,14 +318,14 @@ function App() {
               <h3 className="gold-gradient-text" style={{ fontSize: "1.8rem" }}>
                 WHERE
               </h3>
-              <p>Sri Bharathi Mahal</p>
+              <p>Sri Meenatchi Thirumana Mandapam</p>
               <p style={{ fontSize: "0.9rem", color: "var(--text-sub)" }}>
-                Tirupatur main road, Mathur, Tamil Nadu.
+                Matlampatti, Dharmapuri, Tamil Nadu.
               </p>
             </div>
 
             <a
-              href="https://maps.app.goo.gl/1oReEx5wWHJdvm6N6"
+              href="https://www.google.com/maps/@12.2270836,78.1936056,3a,75y,214.96h,90t/data=!3m7!1e1!3m5!1scqUKyOqkdsrMnXt5ZZEe1g!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DcqUKyOqkdsrMnXt5ZZEe1g%26yaw%3D214.96144!7i13312!8i6656?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
               className="btn"
@@ -300,27 +355,29 @@ function App() {
               <button
                 onClick={() =>
                   window.open(
-                    "https://www.google.com/calendar/render?action=TEMPLATE&text=Senthil+%26+Vaishnavi+Devi+Wedding&dates=20260528T133000Z/20260529T053000Z&details=Reception:+May+28,+7-9+PM%0AWedding:+May+29,+6+AM+onwards.%0A%0AWe+joyfully+invite+you+to+share+in+our+happiness.&location=9CVC%2BM3%2C+Dharmapuri+-+Tirupattur+Rd%2C+Mathur%2C+Tamil+Nadu+635203&sf=true&output=xml",
+                    "https://www.google.com/calendar/render?action=TEMPLATE&text=Naveen+%26+Laila+Wedding&dates=20260917T020000Z/20260917T033000Z&details=Wedding:+September+17,+7:30+AM+to+9:00+AM.%0A%0AWe+joyfully+invite+you+to+share+in+our+happiness.&sf=true&output=xml",
                     "_blank"
                   )
                 }
                 className="btn calendar-btn"
+
               >
-                MARK THE MOMENT
-              </button>
+
+                MARK THE MOMENT </button>
+
             </div>
           </div>
         </section>
 
         <footer className="footer-small ">
-          <p>Made with ❤️ for Senthil & Vaishnavi</p>
+          <p>Made with ❤️ for Naveen & Laila</p>
         </footer>
       </main>
 
       {/* Floating Icons */}
       <div className="floating-controls">
         <a
-          href="https://maps.app.goo.gl/1oReEx5wWHJdvm6N6"
+          href="https://www.google.com/maps/@12.2270836,78.1936056,3a,75y,214.96h,90t/data=!3m7!1e1!3m5!1scqUKyOqkdsrMnXt5ZZEe1g!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DcqUKyOqkdsrMnXt5ZZEe1g%26yaw%3D214.96144!7i13312!8i6656?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
           target="_blank"
           rel="noopener noreferrer"
           className="control-btn map-btn"
