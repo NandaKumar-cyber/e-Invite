@@ -200,20 +200,16 @@ function App() {
           <div className="flap flap-top"></div>
 
           <div className="wax-seal">
-            {/* <span className="seal-text">Naveen & Laila</span>
-             */}
-            <span>Naveen</span>
-
-            <span className="amp">&</span>
-            <span>Laila</span>
-
+            <span className="seal-monogram">N</span>
+            <span className="seal-heart">♥</span>
+            <span className="seal-monogram">L</span>
           </div>
           <div className="letter">
             <p
               className="script-font"
               style={{ fontSize: "1.8rem", marginBottom: "5px", color: "#000" }}
             >
-              Our Wedding
+              Naveen weds Laila
             </p>
             {/* <h2 className="accent-font" style={{ color: '#000', fontSize: '1.4rem' }}>Senthil & Vaishnavi Devi</h2> */}
           </div>
@@ -251,7 +247,7 @@ function App() {
             <h1 className="couple-name gold-gradient-text">
               <span>Naveen</span>
 
-              <span className="amp">&</span>
+              <span className="amp">weds</span>
               <span>Laila</span>
 
             </h1>
@@ -292,16 +288,16 @@ function App() {
                 margin: "30px 0",
               }}
             >
-              {/* <div>
+              <div>
                 <h3
                   className="gold-gradient-text"
                   style={{ fontSize: "1.8rem" }}
                 >
                   RECEPTION
                 </h3>
-                <p>May 28, 2026 | Thursday</p>
-                <p>07:00 PM - 09:00 PM</p>
-              </div> */}
+                <p>September 18, 2026 | Wednesday</p>
+                <p>07:30 PM - 10:00 PM</p>
+              </div>
               <div>
                 <h3
                   className="gold-gradient-text"
@@ -309,7 +305,7 @@ function App() {
                 >
                   MUHURTHAM
                 </h3>
-                <p>September 17, 2026 | Friday</p>
+                <p>September 17, 2026 | Thursday</p>
                 <p>07:30 AM - 09:00 AM</p>
               </div>
             </div>
