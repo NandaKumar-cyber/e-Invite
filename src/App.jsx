@@ -295,7 +295,7 @@ function App() {
                 >
                   RECEPTION
                 </h3>
-                <p>September 18, 2026 | Wednesday</p>
+                <p>September 16, 2026 | Wednesday</p>
                 <p>07:30 PM - 10:00 PM</p>
               </div>
               <div>
